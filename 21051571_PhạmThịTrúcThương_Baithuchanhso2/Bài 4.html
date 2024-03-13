@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TÍNH CHỈ SỐ BMI</title>
+    <style>
+        .container {
+            background: linear-gradient(to right,#FFFFCC,#003399);
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            padding: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+      
+        .result-container {
+            background-color: #33CCCC;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            color: black;
+            margin-top: -20px;
+        }
+
+        .input-field {
+            margin-bottom: 25px;
+            color: black;
+        }
+
+        .calculate-button {
+            margin-top: 20px;
+            width: 100px;
+            height: 20px;
+            background-color:  #0099FF;
+            margin: 0 auto;
+            padding: 15px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+        }
+      
+        .inner-container {
+            background-color: #33CCCC;
+            width: 300px;
+            height: 300px;
+            margin: 40px auto 0;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+         }
+
+         .inner-container h1 {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background-color: #0066FF;
+            padding: 10px;
+            margin: 0;
+            z-index: 1;
+         }
+
+         #result {
+            font-weight: bold;
+         }
+
+         #result .bmi {
+            color: blue;
+         }
+
+         #result .classification,
+         #result .recommendation {
+            color: red;
+         }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h1>TÍNH CHỈ SỐ BMI</h1>
+            <br>
+            <div class="input-field">
+                <label for="weight">Nhập cân nặng:</label>
+                <input type="number" id="weight" placeholder="Cân nặng (kg)">
+            </div>
+            <div class="input-field">
+                <label for="height">Nhập chiều cao:</label>
+                <input type="number" step="0.01" min="0.00" id="height" placeholder="Chiều cao (m)">
+            </div>
+            <div class="input-field">
+                <label for="age">Chọn độ tuổi:</label>
+                <select id="age">
+                    <option value="Trung niên">Trung niên</option>
+                    <option value="Trung niên, Già lớn tuổi">Trung niên, Già lớn tuổi</option>
+                    <option value="Già, lớn tuổi">Già, lớn tuổi</option>
+                </select>
+            </div>
+            <button class="calculate-button" onclick="calculateBMI()">TÍNH BMI</button>
+        </div>
+        <div class="result-container">
+            <h2>KẾT QUẢ</h2>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value;
+            var age = document.getElementById("age").value;
+
+            var bmi = weight / (height * height);
+
+            var resultElement = document.getElementById("result");
+
+            var bmiObject = {
+                bmi: bmi.toFixed(2),
+                classification: "",
+                recommendation: ""
+            };
+
+            if (bmi < 18.5) {
+                bmiObject.classification = "Dưới chuẩn";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                bmiObject.classification = "Bình thường";
+            } else if (bmi >= 25.0 && bmi <= 29.9) {
+                bmiObject.classification = "Thừa cân";
+            } else if (bmi >= 30.0 && bmi <= 34.9) {
+                bmiObject.classification = "Béo phì cấp độ I";
+            } else if (bmi >= 35.0 && bmi <= 39.9) {
+                bmiObject.classification = "Béo phì cấp độ II";
+            } else {
+                bmiObject.classification = "Béo phì cấp độ III";
+            }
+
+            if (bmi >= 30.0) {
+                if (age === "Trung niên" || age === "Trung niên, Già lớn tuổi") {
+                    bmiObject.recommendation = "Tập thể dục thường xuyên";
+                } else if (age === "Già, lớn tuổi") {
+                    bmiObject.recommendation = "Hạn chế ăn mỡ động vật";
+                }
+            } else if (bmi >= 25.0) {
+                if (age === "Trung niên" || age === "Trung niên, Già lớn tuổi" || age === "Già, lớn tuổi") {
+                    bmiObject.recommendation = "Hạn chế ăn mỡ động vật";
+                }
+            }
+
+            resultElement.innerHTML = "BMI: <span class='bmi'>" + bmiObject.bmi + "</span><br>Phân loại: <span class='classification'>" + bmiObject.classification + "</span><br>Khuyến nghị: <span class='recommendation'>" + bmiObject.recommendation + "</span>";
+        }
+     </script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LOG IN</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+      
+        .outer-box {
+            background-image: linear-gradient(to bottom, lightpink, lightblue);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+      
+        .inner-box {
+            background-image: linear-gradient(to bottom right, lightgreen, lightpink);
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+      
+        .login-heading {
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+      
+        .login-text {
+            text-align: center;
+            margin-top: 10px;
+        }
+      
+        .input-field {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+      
+        .icon {
+            margin-right: 10px;
+        }
+      
+        .password-field {
+            position: relative;
+        }
+      
+        .show-password-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+      
+        .submit-button {
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+      
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+      
+        .sign-up {
+            background-color: #ff9f00;
+            border: none;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+      
+        .sign-up-icon {
+            margin-right: 10px;
+        }
+      
+        .forgot-password-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="outer-box">
+            <div class="inner-box">
+                <h2 class="login-heading">Log In</h2>
+                <p class="login-text">Login here using your username and password</p>
+                <div class="input-field">
+                    <span class="icon">👤</span>
+                    <input type="text" placeholder="Username">
+                </div>
+                <div class="input-field password-field">
+                    <span class="icon">🔒</span>
+                    <input type="password" placeholder="Password">
+                    <span class="show-password-icon">👁️</span>
+                </div>
+                <div class="input-field">
+                    <button class="submit-button" onclick="login()">Log In</button>
+                </div>
+                <p class="forgot-password-container">
+                    <span class="forgot-password" onclick="forgotPassword()">Forgot Password</span>
+                </p>
+                <div class="input-field">
+                    <button class="sign-up" onclick="signUp()">
+                        <span>Sign Up</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const showPasswordIcon = document.querySelector('.show-password-icon');
+        const passwordInput = document.querySelector('input[type="password"]');
+        showPasswordIcon.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                showPasswordIcon.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                showPasswordIcon.textContent = '🔒';
+            }
+        });
+
+        function login() {
+           
+            const username = document.querySelector('input[type="text"]').value;
+            const password = document.querySelector('input[type="password"]').value;
+           
+            console.log("Login form submitted");
+            console.log("Username: " + username);
+            console.log("Password: " + password);
+        }
+
+        function forgotPassword() {
+            console.log("Forgot password clicked");
+        }
+
+        function signUp() {
+            console.log("Sign up clicked");
+        }
+    </script>
+
+</body>
+</html>

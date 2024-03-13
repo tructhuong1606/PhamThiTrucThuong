@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ĐÓNG GÓP Ý KIẾN VỀ SẢN PHẨM</title>
+    <style>
+       .container {
+            width: 550px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #FFFFCC;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 300px;
+            padding: 5px;
+        }
+
+        .btn {
+            background-color: #0066FF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .dgyk{
+            color: #CC66FF;
+            text-align: center;
+
+        }
+        .container-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 7vh;
+            color: #6699FF;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        .bottom-text {
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="dgyk">ĐÓNG GÓP Ý KIẾN VỀ SẢN PHẨM</h1>
+        <div class="container-text">
+          <div class="centered-text">
+            Góp ý của bạn sẽ được chúng tôi xem xét, vui lòng nhập tiếng việt có dấu
+          </div>
+          <div class="bottom-text">
+            Các ý kiến đóng nên viết chi tiết rõ ràng, kèm theo các minh chứng xác thực thời gian và địa điểm (nếu có).
+          </div>
+        </div>
+        <br>
+        <form id="feedback-form" action="#" method="post">
+            <div class="input-group">
+                <label for="input-name">Họ và tên:</label>
+                <input type="text" id="input-name" required>
+            </div>
+            <div class="input-group">
+                <label for="input-card">Mã thẻ:</label>
+                <input type="text" id="input-card" required>
+            </div>
+            <div class="input-group">
+                <label for="input-phone">Số điện thoại:</label>
+                <input type="tel" id="input-phone" required>
+            </div>
+            <div class="input-group">
+                <label for="input-email">Email:</label>
+                <input type="email" id="input-email" required>
+            </div>
+            <div class="input-group">
+                <label for="input-customer-type">Loại khách hàng:</label>
+                <select id="input-customer-type" required>
+                    <option value="">Chọn loại khách hàng</option>
+                    <option value="vip">VVIP</option>
+                    <option value="regular">Regular</option>
+                    <option value="new">New</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="input-invoice">Mã hoá đơn:</label>
+                <input type="text" id="input-invoice">
+            </div>
+            <div class="input-group">
+                <label for="input-description">Chi tiết mô tả:</label>
+                <textarea id="input-description" required></textarea>
+            </div>
+            <button class="btn" type="submit">Gửi Góp Ý</button>
+        </form>
+
+        <div id="feedback-result" style="display: none;">
+            <h2>Kết quả:</h2>
+            <p id="result-name"></p>
+            <p id="result-card"></p>
+            <p id="result-phone"></p>
+            <p id="result-email"></p>
+            <p id="result-customer-type"></p>
+            <p id="result-invoice"></p>
+            <p id="result-description"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var name = document.getElementById('input-name').value;
+            var card = document.getElementById('input-card').value;
+            var phone = document.getElementById('input-phone').value;
+            var email = document.getElementById('input-email').value;
+            var customerType = document.getElementById('input-customer-type').value;
+            var invoice = document.getElementById('input-invoice').value;
+            var description = document.getElementById('input-description').value;
+
+            document.getElementById('result-name').textContent = 'Họ và tên: ' + name;
+            document.getElementById('result-card').textContent = 'Mã thẻ: ' + card;
+            document.getElementById('result-phone').textContent = 'Số điện thoại: ' + phone;
+            document.getElementById('result-email').textContent = 'Email: ' + email;
+            document.getElementById('result-customer-type').textContent = 'Loại khách hàng: ' + customerType;
+            document.getElementById('result-invoice').textContent = 'Mã hoá đơn: ' + invoice;
+            document.getElementById('result-description').textContent = 'Chi tiết mô tả: ' + description;
+
+            document.getElementById('feedback-result').style.display = 'block';
+            document.getElementById('feedback-form').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
